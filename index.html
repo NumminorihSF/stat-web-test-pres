@@ -6,201 +6,259 @@
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="node_modules/shower-ribbon/styles/styles.css">
+	<style>
+		.slide::after {
+			background-repeat: no-repeat;
+		}
+		.comment {
+			display: none;
+			font-size: .5em;
+		}
+		.uncomment .comment {
+			display: block;
+		}
+	</style>
 </head>
 <body class="shower list">
 
-	<header class="caption">
-		<h1>Shower Presentation Engine</h1>
-		<p>Yours Truly, Famous Inc.</p>
-	</header>
+<header class="caption">
+	<h1>Разработка web-системы для тестирования госслужащих</h1>
+</header>
 
-	<section class="slide" id="cover">
-		<h2>Shower Presentation Engine</h2>
-		<p>Brought to you by <a href="http://pepelsbey.net">Vadim Makeev</a></p>
-		<figure>
-			<img class="cover" src="pictures/cover.jpg" alt="Hands on the orange typewriter in a park">
-			<figcaption class="copyright right white">
-				<a href="http://fiftyfootshadows.net/">© John Carey</a>
-			</figcaption>
+<section class="slide" id="cover">
+	<h2>Разработка web-системы<br>для тестирования госслужащих</h2>
+	<p class="university">Сибирский государственный университет науки и технологий имени академика М.Ф. Решетнева</p>
+	<p class="creator">Разработал:<br>
+		студент гр. 0901-51<br>
+		Петряев К.Ю.</p>
+	<p class="mentor">Руководитель:<br>
+		доц., канд. техн. наук<br>
+		Окладников С.М.</p>
+	<style>
+		#cover p.university {
+			font-size: 16px;
+			text-align: center;
+			position: absolute;
+			top: 40px;
+			left: 0;
+			right: 0;
+		}
+		#cover h2 {
+			margin: 30px 0 0;
+			text-align: center;
+			font-size: 70px;
+		}
+
+		#cover p.creator {
+			margin-top: 80px;
+			margin-left: 70%;
+			text-align: left;
+			font-size: 16px;
+		}
+		#cover p.mentor {
+			margin-top: 0;
+			margin-left: 70%;
+			text-align: left;
+			font-size: 16px;
+		}
+	</style>
+</section>
+
+<section class="slide">
+	<h2>Цель работы</h2>
+	<p class="comment">Необходимо было создать web-систему для тестирования госслужащих,
+		удовлетворяющую следующим базовым требованиям:</p>
+	<ul class="comment">
+		<li>Пользователь не должен иметь возможности узнать правильные ответы</li>
+		<li>Возможность создавать вопросы, привязанные к экспертизе отдела</li>
+		<li>Возможность ограничения времени для ответа на вопрос/тестирование</li>
+		<li>Возможность промежуток времени для прохождения тестирования</li>
+		<li>Возможность использования интерфейса с мобильных устройств</li>
+	</ul>
+	<p>Разработать информационную системы, позволяющую производить тестирование госслужащих,
+		обработку результатов тестирования, а так же предоставление отчетов по результатам
+		в удобной для восприятия форме.</p>
+</section>
+
+<section class="slide">
+	<h2>Задачи работы</h2>
+	<ul>
+		<li>Изучение этапов разработки программных систем</li>
+		<li>Изучение условий и особенностей тестирования посредством различных иснтрументов</li>
+		<li>Разработка web-системы тестирования</li>
+	</ul>
+</section>
+
+<section class="slide">
+	<h2>Тестирование</h2>
+	<p class="comment">На слайде приведено определение "тест"'а. Собственно тестирование является процессом проверки
+		навыков и знаний посредством теста.
+		Как следует из определения, приведенном на слайде, при разработке системы необходимо было
+		предоставить возможность формализации заданий (создание вопросов с четкими вариантами ответов),
+		а так же предоставить возможность получения формальной оценки знаний и навыков испытуемого,
+		с помощью автоматической сверки ответов пользователя с правильными. </p>
+	<p>Тест - система формализованных заданий, по результатам выполнения которых можно судить об уровне развития
+		определённых качеств испытуемого, а также о его знаниях, умениях и навыках.</p>
+</section>
+
+<section class="slide">
+	<h2>Способы тестирования</h2>
+	<ul>
+		<li>Устный <span class="comment">(собеседование)</span></li>
+		<li>Письменный <span class="comment">(ЕГЭ)</span></li>
+		<li>Электронный</li>
+	</ul>
+	<p class="comment">В силу необходимых временных затрат, а так же других особенностей каджого из вариантов,
+		был выбран электронный способ тестирования испытуемых.</p>
+</section>
+
+<section class="slide">
+	<h2>Сравнительный анализ аналогов</h2>
+	<p class="comment">Результат сравнения представлен в таблице 1 раздаточного материала.
+		Результатом сравнения стало понимание, что да</p>
+	<p>Проведен аналих следующих аналогов: Google Forms, Form Designer, Testograf, Typeform. Основные критерии:
+	</p>
+	<ul>
+		<li>Стоимость</li>
+		<li>Простота использования</li>
+		<li>Автоматическая проверка результатов</li>
+		<li>Привязка групп вопросов к пользователям</li>
+	</ul>
+</section>
+
+<section class="slide">
+	<h2>Архитектура системы</h2>
+	<p class="comment">Для реализации была выбрана 3-х звеньевая архитектура.</p>
+	<p class="comment">Функции Клиента:
+		Отображение данных,
+		Обработка пользовательского ввода,
+		Отправка HTTP-запросов к серверной части</p>
+	<p class="comment">Функции Сервера:
+		Проверка аутентификации пользователя,
+		Проверка прав доступа пользователя,
+		Перевод HTTP-запросов клиента в SQL-запросы базы данных,
+		Перевод результата SQL-запроса в HTTP-ответ для клиента,
+		Отправка запросов серверной части.</p>
+	<p class="comment">Функции Базы данных:
+		Обеспечение персистентности данных,
+		Обеспечение консистентности данных,
+		Предоставление доступа к данным</p>
+	<ul>
+		<li>3-х звеньевая архитектура:
+			<ul>
+				<li>клиент</li>
+				<li>сервер</li>
+				<li>база данных</li>
+			</ul>
+		</li>
+		<li>Для удобства масштабируемости рекомендуется добавить балансировщик HTTP-запросов</li>
+	</ul>
+</section>
+
+<section class="slide">
+	<h2>Схема архитектуры системы</h2>
+	<p class="comment">Упрощенная архитектура системы изображена на приведенном слайде.
+		Так же ее можно увидеть на рисунке 1 раздаточного материала.</p>
+	<p style="text-align: center;">
+		<img src="pictures/arch.svg" alt="Архитектурная схема системы" />
+	</p>
+</section>
+
+<section class="slide">
+	<h2>Схема архитектуры системы</h2>
+	<p class="comment">Масштабирование возможно на уровне web-сервера, так и на уровне базы данных.</p>
+	<p style="text-align: center; position: relative;">
+		<img src="pictures/arch.svg" alt="Архитектурная схема системы" />
+		<span style="position: absolute; display:inline-block; background: #fff; opacity: 0.7; top: 0; bottom: 0; left: 0; right: calc(50% + 100px)"></span>
+		<span style="position: absolute; display:inline-block; background: #fff; opacity: 0.7; top: 0; height: 50px; left: calc(50% - 100px); right: calc(50% - 100px)"></span>
+		<span style="position: absolute; display:inline-block; background: #fff; opacity: 0.7; top: 50%; bottom: 0; left: calc(50% - 100px); right: calc(50% - 100px)"></span>
+		<span style="position: absolute; display:inline-block; background: #fff; opacity: 0.7; top: 0; bottom: 0; left: calc(50% + 100px); right: 0"></span>
+	</p>
+</section>
+
+<section class="slide">
+	<h2>Схема архитектуры системы</h2>
+	<p class="comment">Web-сервер может представлять из себя несколько физических машин, соуществляющих параллельную обработку запросов.
+		Для улучшения накладных расходов по памяти и процессорному времени используется серверная платформа Node.js.
+		Ее приемуществом перед традиционными для web средствами типа PHP, Perl, Ruby, Python является использование асинхронного рантайма
+		для обработки запросов.</p>
+	<p style="text-align: center; position: relative;">
+		<img src="pictures/arch.svg" alt="Архитектурная схема системы" />
+		<span style="position: absolute; display:inline-block; background: #fff; opacity: 0.7; top: 0; bottom: 0; left: 0; right: calc(50% - 100px)"></span>
+		<span style="position: absolute; display:inline-block; background: #fff; opacity: 0.7; top: 0; height: 50px; left: calc(50% + 100px); right: calc(50% - 300px)"></span>
+		<span style="position: absolute; display:inline-block; background: #fff; opacity: 0.7; top: 50%; bottom: 0; left: calc(50% + 100px); right: calc(50% - 300px)"></span>
+		<span style="position: absolute; display:inline-block; background: #fff; opacity: 0.7; top: 0; bottom: 0; left: calc(50% + 300px); right: 0"></span>
+	</p>
+</section>
+
+<section class="slide">
+	<h2>Схема базы данных</h2>
+	<p class="comment">
+		Схема базы данных приведена на слайде. Большое количество ограничений, указанных на уровне базы данных
+		позволяет уменьшить реализацию серверной части, сильно уменьшить влияние возможных race condition,
+		а так же гарантировать целостность и консистентность данных в системе.</p>
+	<p style="text-align: center; position: relative;">
+		<img src="pictures/db.png" style="display: inline-block; max-height: 50vh; width: auto;" alt="Схема базы данных" />
+	</p>
+</section>
+
+<section class="slide">
+	<h2>Интерфейс пользователя</h2>
+	<p class="comment">
+		Клиентская часть программно представляет из себя Single Page Application.
+		Приложение написанно с использованием фреймворка Angular. Использование SPA позволяет
+		уменьшить объем трафика от серверной части до клиентской, а так же снизить нагрузку на обе
+		части приложения.
+	</p>
+	<p class="comment">
+		Для графической части интерфейса используется библиотека компонентов Angular-Material.
+		Данная библиотека хорошо проработана как с точки зрения семантики интерфейса, так и с точки зрения
+		удобства использования с клавиатуры, touch-устройств.
+		На слайде приведены различные части полученного интерфейса.
+	</p>
+	<div style="position:relative">
+		<figure style="width:47vh; position:absolute; left:0; top: 0;">
+		<img src="pictures/regular-ui.png" style="width:100%; height: auto" alt="Интерейс выбора теста" />
+			<figcaption>Интерфейс выбора теста</figcaption>
 		</figure>
-		<style>
-			#cover h2 {
-				margin: 30px 0 0;
-				color: white;
-				text-align: center;
-				font-size: 70px;
-			}
-
-			#cover p {
-				margin: 10px 0 0;
-				text-align: center;
-				color: white;
-				font-style: italic;
-				font-size: 20px;
-			}
-
-			#cover p a {
-				color: white;
-			}
-		</style>
-	</section>
-
-	<section class="slide">
-		<h2>Shower key features</h2>
-		<ol>
-			<li>Built on HTML, CSS and JavaScript</li>
-			<li>Works in all modern browsers</li>
-			<li>Themes are separated from engine</li>
-			<li>Fully keyboard accessible</li>
-			<li>Printable to PDF</li>
-		</ol>
-		<p class="note">Shower ['ʃəuə] noun. A person or thing that shows.</p>
-	</section>
-
-	<section class="slide">
-		<h2>Plain text on your slides</h2>
-		<p>Lorem ipsum dolor sit amet, consectetur <a href="#4">adipisicing</a> elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, <em>quis nostrud</em> exercitation ullamco laboris <strong>nisi ut aliquip</strong> ex ea commodo consequat. Duis aute irure <i>dolor</i> in reprehenderit in voluptate velit esse cillum <b>dolore</b> eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in <code>&lt;culpa&gt;</code> qui officia deserunt mollit anim id est laborum.</p>
-	</section>
-
-	<section class="slide">
-		<h2>Two columns if you like</h2>
-		<div class="columns two">
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
-			<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.</p>
-		</div>
-	</section>
-
-	<section class="slide">
-		<h2>All kind of lists</h2>
-		<ol>
-			<li>Simple lists are marked with bullets</li>
-			<li>Ordered lists begin with a number</li>
-			<li>You can even nest lists one inside another
-				<ul>
-					<li>Or mix their types</li>
-					<li>But do not go too far</li>
-					<li>Otherwise audience will be bored</li>
-				</ul>
-			</li>
-			<li>Look, seven rows exactly!</li>
-		</ol>
-	</section>
-
-	<section class="slide">
-		<h2>Serious citations</h2>
-		<figure>
-			<blockquote>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.</p>
-			</blockquote>
-			<figcaption>Marcus Tullius Cicero</figcaption>
+		<figure style="width:47vh; position:absolute; right: 0; top: 0;">
+		<img src="pictures/test-ui.png" style="width:100%; height: auto" alt="Интерейс ответа на вопрос" />
+			<figcaption>Интерейс ответа на вопрос</figcaption>
 		</figure>
-	</section>
+	</div>
+</section>
 
-	<section class="slide">
-		<h2>Code samples</h2>
-		<pre>
-			<code>&lt;!DOCTYPE html&gt;</code>
-			<code class="mark">&lt;html lang="en"&gt;</code>
-			<code><mark>&lt;head&gt;</mark> <span class="comment">&lt;!--Comment--&gt;</span></code>
-			<code>    &lt;title&gt;Shower&lt;/title&gt;</code>
-			<code>    &lt;meta charset="<mark class="important">UTF-8</mark>"&gt;</code>
-			<code>    &lt;link rel="stylesheet" href="screen.css"&gt;</code>
-			<code><mark>&lt;/head&gt;</mark></code>
-		</pre>
-	</section>
+<section class="slide">
+	<h2>Результаты</h2>
+	<ul>
+		<li>Разработана архитектура системы, позволяющая быстро и легко масштабировать систему</li>
+		<li>Предложена схема базы данных, позволяющая подключать дополнительные приложения без опасений за целостность данных</li>
+		<li>Серверная часть использует хранимые на файловой системе сервера запросы, защищенные от SQL-инъекций</li>
+		<li>Создан интерфейс пользователя отвечающий требованиям семантичности и доступности элементов</li>
+	</ul>
+</section>
 
-	<section class="slide">
-		<h2>Even tables</h2>
-		<table>
-		<tr>
-			<th scope="col">Locavore</th>
-			<th>Umami</th>
-			<th>Helvetica</th>
-			<th>Vegan</th>
-		</tr>
-		<tr>
-			<th scope="row">Fingerstache</th>
-			<td>Kale</td>
-			<td>Chips</td>
-			<td>Keytar</td>
-		</tr>
-		<tr>
-			<th scope="row">Sriracha</th>
-			<td>Gluten-free</td>
-			<td>Ennui</td>
-			<td>Keffiyeh</td>
-		</tr>
-		<tr>
-			<th scope="row">Thundercats</th>
-			<td>Jean</td>
-			<td>Shorts</td>
-			<td>Biodiesel</td>
-		</tr>
-		<tr>
-			<th scope="row">Terry</th>
-			<td>Richardson</td>
-			<td>Swag</td>
-			<td>Blog</td>
-		</tr>
-		</table>
-		<p>It’s good to have information organized.</p>
-	</section>
+<section class="slide">
+	<h2>Перспективы развития</h2>
+	<ul>
+		<li>Добавление новых типов вопросов</li>
+		<li>Улучшение валидации форм в интерфейсе администратора</li>
+		<li>Возможность добавления мобильного приложения как клиента системы</li>
+	</ul>
+</section>
 
-	<section class="slide" id="picture">
-		<h2>Pictures</h2>
-		<figure>
-			<img class="cover" src="pictures/picture.jpg" alt="Orange typewriter on a wooden table close-up">
-			<figcaption class="copyright right white">
-				<a href="http://fiftyfootshadows.net/">© John Carey</a>
-			</figcaption>
-		</figure>
-		<style>
-			#picture h2 {
-				color: white;
-			}
-		</style>
-	</section>
+<section class="slide">
+	<h2 class="shout">Спасибо за внимание</h2>
+</section>
 
-	<section class="slide">
-		<h2 class="shout shrink">You can even shout this way</h2>
-	</section>
+<footer class="badge">
+	<a href="https://github.com/shower/shower">Fork me on GitHub</a>
+</footer>
 
-	<section class="slide">
-		<h2>Inner navigation</h2>
-		<ol>
-			<li>Lets you reveal list items one by one</li>
-			<li class="next">To keep some key points</li>
-			<li class="next">In secret from audience</li>
-			<li class="next">But it will work only once</li>
-			<li class="next">Nobody wants to see the same joke twice</li>
-		</ol>
-	</section>
+<div class="progress"></div>
 
-	<section class="slide" id="see-more">
-		<h2 class="shout">
-			<img src="pictures/logo.svg" alt="Shower logo">
-			<a href="https://github.com/shower/shower">See more on GitHub</a>
-		</h2>
-		<style>
-			#see-more h2 {
-				font-size: 100px
-			}
-
-			#see-more img {
-				width: 0.72em;
-				height: 0.72em;
-			}
-		</style>
-	</section>
-
-	<footer class="badge">
-		<a href="https://github.com/shower/shower">Fork me on GitHub</a>
-	</footer>
-
-	<div class="progress"></div>
-
-	<script src="node_modules/shower-core/shower.min.js"></script>
-	<!-- Copyright © 2018 Yours Truly, Famous Inc. -->
+<script src="node_modules/shower-core/shower.min.js"></script>
+<!-- Copyright © 2018 Yours Truly, Famous Inc. -->
 
 </body>
 </html>
